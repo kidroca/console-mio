@@ -9,7 +9,7 @@
     using System.Windows.Forms;
     using Enumerations;
 
-    public class StreamHomeworkHelper : BaseHelper
+    public class StreamHomeworkHelper : ConsoleHelper
     {
         private string myIpAddress;
 
@@ -67,9 +67,9 @@
 
             switch (converTo)
             {
-                case FileLength.KB:
+                case FileLength.Kbyte:
                     return lengthInBytes / Factor;
-                case FileLength.MB:
+                case FileLength.Mbyte:
                     return lengthInBytes / Math.Pow(2, Factor);
                 default:
                     return lengthInBytes;

@@ -1,11 +1,11 @@
 ﻿namespace HomeworkHelpers.Xml
 {
-    using Enumerations;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
+    using Enumerations;
 
     public class TraverseUsingXDocument : DirectoryTraverse
     {
@@ -60,7 +60,7 @@
                           , new XAttribute("name", this.helper.GetFileName(info.Name))
                           , new XAttribute("size"
                                 , string.Format("{0:F3} kb", this.helper.ConvertFileLength(
-                                    info.Length, FileLength.KB))
+                                    info.Length, FileLength.Kbyte))
                 ))));
             }
         }
