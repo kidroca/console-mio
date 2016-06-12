@@ -40,5 +40,23 @@ namespace HomeworkHelpers.ConsoleEnchantments.Contracts
         /// <param name="background">Color from the <see cref="ConsoleColor"/> enumeration</param>
         /// <returns>Returns self for chaining</returns>
         IConsoleWriter WriteLine(string text, ConsoleColor color, ConsoleColor background);
+
+        /// <summary>
+        /// Writes a formated string in the given color similary to String.Format method
+        /// </summary>
+        /// <param name="text">String containing placehoders <example>"{0} {1}"</example></param>
+        /// <param name="color">Color from the <see cref="ConsoleColor"/> enumeration</param>
+        /// <param name="args">Arguments that will be inserted in the placeholders</param>
+        /// <returns></returns>
+        IConsoleWriter Format(string text, ConsoleColor color, params object[] args);
+
+        /// <summary>
+        /// Writes a formated line in the given color similary to String.Format method
+        /// </summary>
+        /// <param name="text">String containing placehoders <example>"{0} {1}"</example></param>
+        /// <param name="color">Color from the <see cref="ConsoleColor"/> enumeration</param>
+        /// <param name="args">Arguments that will be inserted in the placeholders</param>
+        /// <returns></returns>
+        IConsoleWriter FormatLine(string text, ConsoleColor color, params object[] args);
     }
 }

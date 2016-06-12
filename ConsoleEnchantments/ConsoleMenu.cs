@@ -4,11 +4,8 @@
     using System.Collections.Generic;
     using Contracts;
 
-    /// <summary>
-    /// A Simple select up and down from a list of options Console Menu
-    /// </summary>
-    /// <typeparam name="T">the type behind the menu option</typeparam>
-    public class ConsoleMenu<T>
+    /// <inheritdoc />
+    public class ConsoleMenu<T> : IConsoleMenu<T>
     {
         private readonly IConsoleWriter writer;
 
@@ -19,7 +16,7 @@
         /// <summary>
         /// Creates an empty menu
         /// </summary>
-        /// <param name="writer"></param>
+        /// <param name="writer">The writer used for rendering the menu</param>
         public ConsoleMenu(IConsoleWriter writer)
         {
             this.writer = writer;
@@ -53,16 +50,12 @@
         /// <summary>
         /// Gets the items of the menu
         /// </summary>
-        public IList<T> MenuItems
-        {
-            get { return this.items; }
-        }
+        public IList<T> MenuItems => this.items;
 
         /// <summary>
-        /// Adds an item to the menu O(1)
+        /// O(1)
+        /// <inheritdoc />
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
         public ConsoleMenu<T> AddItem(T item)
         {
             this.items.Add(item);
@@ -70,21 +63,17 @@
         }
 
         /// <summary>
-        /// Removes an item from the menu O(n)
+        /// O(n)
+        /// <inheritdoc />
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
         public ConsoleMenu<T> RemoveItem(T item)
         {
             this.items.Remove(item);
             return this;
         }
 
-        /// <summary>
-        /// Displays the menu, the menu stays on until an option is selected with 'Enter'
-        /// </summary>
-        /// <returns>The coresponding selected item</returns>
-        public T DisplayMenu(ConsoleColor foreground, ConsoleColor background)
+        /// <inheritdoc />
+        public T Show(ConsoleColor foreground, ConsoleColor background)
         {
             Console.CursorVisible = false;
 
@@ -163,7 +152,8 @@
             return highlighted;
         }
 
-        private void HighlightItem(ConsoleColor foreground, ConsoleColor background, int top, int highlighted)
+        private void HighlightItem(
+            ConsoleColor foreground, ConsoleColor background, int top, int highlighted)
         {
             Console.CursorTop = top;
             foreach (T item in this.items)
@@ -175,7 +165,8 @@
             this.writer.WriteLine(this.items[highlighted - top].ToString(), background, foreground);
         }
 
-        private void HighlightItemWithPrefix(ConsoleColor foreground, ConsoleColor background, int top, int highlighted)
+        private void HighlightItemWithPrefix(
+            ConsoleColor foreground, ConsoleColor background, int top, int highlighted)
         {
             Console.CursorTop = top;
 

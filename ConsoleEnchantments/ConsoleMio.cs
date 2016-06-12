@@ -7,24 +7,64 @@
     /// <summary>
     /// Console helper library for printig colored messages
     /// </summary> 
-    public class ConsoleMio : IConsoleWriter, IConsoleReader
+    public class ConsoleMio : IConsoleWriter, IConsoleReader, IConsoleHombre
     {
+        private readonly IConsoleWriter writer;
+        private readonly IConsoleReader reader;
+        private readonly IConsoleHombre hombre;
+
+        /// <summary>
+        /// Creates a new ConsoleMio helper with the default implementations of 
+        /// the <see cref="IConsoleWriter"/>, <see cref="IConsoleReader"/> and
+        /// <see cref="IConsoleHombre"/> and invokes the <see cref="Setup"/> method
+        /// </summary>
         public ConsoleMio()
         {
+            this.writer = new ConsoleWriter();
+            this.reader = new ConsoleReader();
+            this.hombre = new ConsoleHombre(this.writer);
 
-        }
-
-        public ConsoleMio(IConsoleWriter writer, IConsoleReader reader)
-        {
-
+            this.Setup();
         }
 
         /// <summary>
-        /// Sets up overall console apperanace, ecnoding to unicode and window width
+        /// Creates a new ConsoleMio helper using the provided wirter and reader
+        /// and invokes the <see cref="Setup"/> method
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="background"></param>
-        /// <param name="windowWidth"></param>
+        /// <param name="writer">An <see cref="IConsoleWriter"/> implementation</param>
+        /// <param name="reader">An <see cref="IConsoleReader"/> implementation</param>
+        /// <param name="hombre">An <see cref="IConsoleHombre"/> implementation</param>
+        /// <exception cref="ArgumentNullException">
+        /// Throws an exception if some of the provided parameters is null
+        /// </exception>
+        public ConsoleMio(IConsoleWriter writer, IConsoleReader reader, IConsoleHombre hombre)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (reader == null)
+            {
+                throw new ArgumentNullException(nameof(reader));
+            }
+
+            if (hombre == null)
+            {
+                throw new ArgumentNullException(nameof(hombre));
+            }
+
+            this.reader = reader;
+            this.writer = writer;
+            this.hombre = hombre;
+        }
+
+        /// <summary>
+        /// Sets up overall console apperanace, ecnoding to unicode and console window width
+        /// </summary>
+        /// <param name="color">The default text color</param>
+        /// <param name="background">The default background color</param>
+        /// <param name="windowWidth">The window width</param>
         public void Setup(
             ConsoleColor color = ConsoleColor.Black
             , ConsoleColor background = ConsoleColor.White
@@ -47,142 +87,70 @@
             }
         }
 
-        /// <summary>
-        /// Restarts the given method, usually for Main.
-        /// </summary>
-        /// <param name="restartCallback"></param>
-        public void Restart(Action restartCallback)
-        {
-            Console.WriteLine();
-            this.PrintHeading("PRESS ANY KEY TO RESTART or Ctrl + C to exit");
-            Console.CursorVisible = false;
-            Console.ReadKey(true);
-            Console.CursorVisible = true;
-
-            restartCallback();
-        }
-
+        /// <inheritdoc />
         public IConsoleWriter Write(string text, ConsoleColor color)
         {
-            var previousColor = Console.ForegroundColor;
-            Console.ForegroundColor = color;
-
-            Console.Write(text);
-
-            Console.ForegroundColor = previousColor;
-
-            return this;
+            return this.writer.Write(text, color);
         }
 
-        public IConsoleWriter Write(string text, ConsoleColor color, params object[] args)
-        {
-            return this.Write(string.Format(text, args), color);
-        }
-
+        /// <inheritdoc />
         public IConsoleWriter Write(string text, ConsoleColor color, ConsoleColor background)
         {
-            var previousBackground = Console.BackgroundColor;
-            Console.BackgroundColor = background;
-
-            this.Write(text, color);
-
-            Console.BackgroundColor = previousBackground;
-
-            return this;
+            return this.writer.Write(text, color, background);
         }
 
+        /// <inheritdoc />
         public IConsoleWriter WriteLine(string text, ConsoleColor color)
         {
-            this.Write(text, color);
-            Console.WriteLine();
-
-            return this;
+            return this.writer.WriteLine(text, color);
         }
 
+        /// <inheritdoc />
         public IConsoleWriter WriteLine(string text, ConsoleColor color, ConsoleColor background)
         {
-            this.Write(text, color, background);
-            Console.WriteLine();
-
-            return this;
+            return this.writer.WriteLine(text, color, background);
         }
 
-        public IConsoleWriter WriteLine(string text, ConsoleColor color, params object[] args)
+        /// <inheritdoc />
+        public IConsoleWriter Format(string text, ConsoleColor color, params object[] args)
         {
-            return this.WriteLine(string.Format(text, args), color);
+            return this.writer.Format(text, color, args);
         }
 
+        /// <inheritdoc />
+        public IConsoleWriter FormatLine(string text, ConsoleColor color, params object[] args)
+        {
+            return this.writer.FormatLine(text, color, args);
+        }
+
+        /// <inheritdoc />
         public string ReadLine(ConsoleColor color)
         {
-            var previousColor = Console.ForegroundColor;
-
-            Console.ForegroundColor = color;
-            string input = Console.ReadLine();
-
-            Console.ForegroundColor = previousColor;
-
-            return input;
+            return this.reader.ReadLine(color);
         }
 
+        /// <inheritdoc />
         public string ReadLine(ConsoleColor color, ConsoleColor background)
         {
-            var previousBackground = Console.BackgroundColor;
-            Console.BackgroundColor = background;
-
-            this.ReadLine(color);
-
-            Console.BackgroundColor = previousBackground;
-
-            var previousColor = Console.ForegroundColor;
-
-            Console.ForegroundColor = color;
-            string input = Console.ReadLine();
-
-            Console.ForegroundColor = previousColor;
-
-            return input;
+            return this.reader.ReadLine(color, background);
         }
 
+        /// <inheritdoc />
         public void PrintHeading(string text, ConsoleColor color = ConsoleColor.White)
         {
-            int totalWidth = Console.WindowWidth;
-            string format = string.Format(" {0} ", text);
-            char paddingChar = ' ';
-            var paddingColor = ConsoleColor.White;
-            var backgorundColor = ConsoleColor.DarkGray;
-            int freeWidth = totalWidth - format.Length;
-
-            this.Write(new string(paddingChar, totalWidth), paddingColor, backgorundColor);
-            this.Write(new string(paddingChar, freeWidth / 2), paddingColor, backgorundColor);
-            this.Write(format, color, backgorundColor);
-            this.Write(new string(paddingChar, freeWidth / 2), paddingColor, backgorundColor);
-            this.Write(new string(paddingChar, totalWidth), paddingColor, backgorundColor);
-            Console.WriteLine();
-            Console.WriteLine();
+            this.hombre.PrintHeading(text, color);
         }
 
-        /// <summary>
-        /// Creates a <see cref="ConsoleMenu{T}"/> from a list of items
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
-        /// <returns>Returns a menu that can be displayed</returns>
+        /// <inheritdoc />
         public ConsoleMenu<T> CreateMenu<T>(IList<T> items)
         {
-            return new ConsoleMenu<T>(this, items);
+            return this.hombre.CreateMenu<T>(items);
         }
 
-        /// <summary>
-        /// Creates a <see cref="ConsoleMenu{T}"/> from a list of items
-        /// the items are displayed with the given <paramref name="prefix"/>
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="prefix">A template prefix that will be printed before each item</param>
-        /// <returns>Returns a menu that can be displayed</returns>
+        /// <inheritdoc />
         public ConsoleMenu<T> CreateMenu<T>(IList<T> items, string prefix)
         {
-            return new ConsoleMenu<T>(this, items, prefix);
+            return this.hombre.CreateMenu<T>(items, prefix);
         }
     }
 }
