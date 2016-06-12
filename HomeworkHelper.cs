@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Provides collection of methods useful for homeworks or tests
+    /// </summary>
     public class HomeworkHelper : ConsoleHelper
     {
         private static readonly Random Random = new Random();
@@ -47,6 +50,15 @@
             return collection;
         }
 
+        /// <summary>
+        /// Generates a random numeric collection of {T}
+        /// </summary>
+        /// <typeparam name="T">The type of the generated collection</typeparam>
+        /// <param name="template">Used as a sample for the collection</param>
+        /// <param name="size">The length of the generated collection</param>
+        /// <param name="min">Lower boundry for the generated collection</param>
+        /// <param name="max">Upper boundry for the generated collection</param>
+        /// <returns></returns>
         public ICollection<T> GenerateRandomNumericCollection<T>(
             T template, long size, int min = -10000, int max = 10000)
             where T : struct, IComparable, IConvertible, IFormattable
