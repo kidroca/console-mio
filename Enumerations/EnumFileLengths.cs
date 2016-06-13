@@ -1,4 +1,4 @@
-﻿namespace HomeworkHelpers.Enumerations
+﻿namespace ConsoleMio.Enumerations
 {
     /// <summary>
     /// Enumeration for different file length measurements

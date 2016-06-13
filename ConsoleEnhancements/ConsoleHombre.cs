@@ -1,4 +1,4 @@
-namespace HomeworkHelpers.ConsoleEnchantments
+namespace ConsoleMio.ConsoleEnhancements
 {
     using System;
     using System.Collections.Generic;

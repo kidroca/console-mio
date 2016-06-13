@@ -1,4 +1,4 @@
-namespace HomeworkHelpers.ConsoleEnchantments.Contracts
+namespace ConsoleMio.ConsoleEnhancements.Contracts
 {
     using System;
     using System.Collections.Generic;

@@ -1,7 +1,7 @@
-﻿namespace HomeworkHelpers
+﻿namespace ConsoleMio
 {
     using System;
-    using ConsoleEnchantments;
+    using ConsoleEnhancements;
 
     /// <summary>
     /// A helper for Console Applications

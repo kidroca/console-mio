@@ -1,4 +1,4 @@
-﻿namespace HomeworkHelpers
+﻿namespace ConsoleMio
 {
     using System;
     using System.Collections.Generic;

@@ -1,8 +1,9 @@
-﻿namespace HomeworkHelpers.Xml
+﻿namespace ConsoleMio.Xml
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using ConsoleMio;
 
     /// <summary>
     /// Implemented Template Method Pattern :)

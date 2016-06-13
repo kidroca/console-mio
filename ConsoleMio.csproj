@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleEnchantments\ConsoleHombre.cs" />
-    <Compile Include="ConsoleEnchantments\ConsoleMio.cs" />
-    <Compile Include="ConsoleEnchantments\ConsoleMenu.cs" />
-    <Compile Include="ConsoleEnchantments\ConsoleReader.cs" />
-    <Compile Include="ConsoleEnchantments\ConsoleWriter.cs" />
-    <Compile Include="ConsoleEnchantments\Contracts\IConsoleWriter.cs" />
-    <Compile Include="ConsoleEnchantments\Contracts\IConsoleReader.cs" />
-    <Compile Include="ConsoleEnchantments\Contracts\IConsoleHombre.cs" />
-    <Compile Include="ConsoleEnchantments\Contracts\IConsoleMenu.cs" />
+    <Compile Include="ConsoleEnhancements\ConsoleHombre.cs" />
+    <Compile Include="ConsoleEnhancements\ConsoleMio.cs" />
+    <Compile Include="ConsoleEnhancements\ConsoleMenu.cs" />
+    <Compile Include="ConsoleEnhancements\ConsoleReader.cs" />
+    <Compile Include="ConsoleEnhancements\ConsoleWriter.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleWriter.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleReader.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleHombre.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleMenu.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enumerations\EnumFileLengths.cs" />
     <Compile Include="HomeworkHelper.cs" />
