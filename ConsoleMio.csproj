@@ -7,7 +7,7 @@
     <ProjectGuid>{95A6DBBC-47D3-4856-ACEF-BEF247DB8893}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeworkHelpers</RootNamespace>
+    <RootNamespace>ConsoleMio</RootNamespace>
     <AssemblyName>Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
