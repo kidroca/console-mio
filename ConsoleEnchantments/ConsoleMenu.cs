@@ -78,7 +78,7 @@
             Console.CursorVisible = false;
 
             int top = Console.CursorTop,
-                bottom = top + items.Count - 1,
+                bottom = top + this.items.Count - 1,
                 highlighted = top;
 
             Action<ConsoleColor, ConsoleColor, int, int> highlightMethod = this.HighlightItem;
@@ -103,24 +103,6 @@
             return this.items[highlighted - top];
         }
 
-        private void HideMenu(int top)
-        {
-            Console.CursorTop = top;
-            int additionalLength = 0;
-            if (!string.IsNullOrEmpty(this.prefix))
-            {
-                additionalLength += this.prefix.Length + this.prefix.Length.ToString().Length + 4;
-            }
-            foreach (var item in this.items)
-            {
-                // Overwrites whitespace with the length of the option + length of the prefix if any
-                Console.WriteLine(
-                    new string(' ', (item.ToString().Length + additionalLength)));
-            }
-
-            Console.CursorTop = top;
-        }
-
         private static int SetHighlightPosition(
             ConsoleKeyInfo pressedKey, int highlighted, int bottom, int top)
         {
@@ -136,6 +118,7 @@
                     {
                         highlighted = top;
                     }
+
                     break;
                 case ConsoleKey.UpArrow:
                 case ConsoleKey.LeftArrow:
@@ -147,9 +130,30 @@
                     {
                         highlighted = bottom;
                     }
+
                     break;
             }
+
             return highlighted;
+        }
+
+        private void HideMenu(int top)
+        {
+            Console.CursorTop = top;
+            int additionalLength = 0;
+            if (!string.IsNullOrEmpty(this.prefix))
+            {
+                additionalLength += this.prefix.Length + this.prefix.Length.ToString().Length + 4;
+            }
+
+            foreach (var item in this.items)
+            {
+                // Overwrites whitespace with the length of the option + length of the prefix if any
+                Console.WriteLine(
+                    new string(' ', item.ToString().Length + additionalLength));
+            }
+
+            Console.CursorTop = top;
         }
 
         private void HighlightItem(

@@ -66,9 +66,9 @@
         /// <param name="background">The default background color</param>
         /// <param name="windowWidth">The window width</param>
         public void Setup(
-            ConsoleColor color = ConsoleColor.Black
-            , ConsoleColor background = ConsoleColor.White
-            , int windowWidth = 120)
+            ConsoleColor color = ConsoleColor.Black,
+            ConsoleColor background = ConsoleColor.White,
+            int windowWidth = 120)
         {
             try
             {

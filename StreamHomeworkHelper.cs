@@ -9,6 +9,9 @@
     using System.Windows.Forms;
     using Enumerations;
 
+    /// <summary>
+    /// Console helper with methods for streams, files and directories
+    /// </summary>
     public class StreamHomeworkHelper : ConsoleHelper
     {
         private string myIpAddress;
@@ -141,35 +144,16 @@
         /// <returns>string in the ip address format</returns>
         public string GetMyIp()
         {
-            // кешинг, nice a?
             if (this.myIpAddress == null)
             {
                 using (var webClient = new WebClient())
                 {
                     string ip = webClient.DownloadString("http://icanhazip.com/").Trim();
-                    if (Char.IsDigit(ip[0]))
-                    {
-                        this.myIpAddress = ip;
-                    }
-                    else
-                    {
-                        this.myIpAddress = "private";
-                    }
+                    this.myIpAddress = char.IsDigit(ip[0]) ? ip : "private";
                 }
             }
 
-            return myIpAddress;
-        }
-
-        private void PromptDialog(FileDialog dialog)
-        {
-            // Directory.GetParent("../../").FullName; 
-            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-            while (dialog.ShowDialog() != DialogResult.OK)
-            {
-                Console.WriteLine("You have to select a file, try again.");
-            }
+            return this.myIpAddress;
         }
 
         /// <summary>
@@ -188,6 +172,17 @@
                 .GroupBy(file => this.GetFileExtension(file.Name))
                 .OrderByDescending(group => group.Count())
                 .ToDictionary(group => group.Key, group => group.ToList());
+        }
+
+        private void PromptDialog(FileDialog dialog)
+        {
+            // Directory.GetParent("../../").FullName; 
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            while (dialog.ShowDialog() != DialogResult.OK)
+            {
+                Console.WriteLine("You have to select a file, try again.");
+            }
         }
     }
 }

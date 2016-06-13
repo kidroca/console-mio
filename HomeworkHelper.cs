@@ -34,10 +34,10 @@
             List<T> collection = new List<T>();
 
             Console.Write(
-                "Enter a sequence of numbers, to end the seuqence enter a blank line: ");
+                "Enter a sequence of numbers, to end the sequence enter a blank line: ");
 
             string inputLine;
-            while ((inputLine = this.ConsoleMio.ReadLine(ConsoleColor.DarkCyan)) != String.Empty)
+            while ((inputLine = this.ConsoleMio.ReadLine(ConsoleColor.DarkCyan)) != string.Empty)
             {
                 T[] current = inputLine
                     .Split(splitChars, StringSplitOptions.RemoveEmptyEntries)
@@ -75,7 +75,7 @@
             var result = new T[size];
             for (int i = 0; i < size; i++)
             {
-                double randomNumber = Random.NextDouble() * range + min;
+                double randomNumber = (Random.NextDouble() * range) + min;
                 T generated = (T)Convert.ChangeType(randomNumber, typeof(T));
                 result[i] = generated;
             }
@@ -107,11 +107,12 @@
             {
                 this.ConsoleMio.Write(
                 "Before you lies the choice submit boring data by hand or use the random generator!\n" +
-                "What say you (Y = Boring, N = Give Me All The Things!)\n", ConsoleColor.DarkCyan);
+                "What say you (Y = Boring, N = Give Me All The Things!)\n",
+                ConsoleColor.DarkCyan);
 
                 userChoice = Console.ReadKey(true).Key;
-
-            } while (userChoice != ConsoleKey.Y && userChoice != ConsoleKey.N);
+            }
+            while (userChoice != ConsoleKey.Y && userChoice != ConsoleKey.N);
 
             ICollection<T> collection;
 

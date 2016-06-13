@@ -48,19 +48,15 @@
             foreach (var key in directoryFiles.Keys)
             {
                 this.xmlWriter.WriteStartElement("extension");
-                this.xmlWriter.WriteAttributeString(
-                    "type"
-                    , string.Format(".{0}", key));
+                this.xmlWriter.WriteAttributeString("type", $".{key}");
 
                 foreach (var info in directoryFiles[key])
                 {
                     this.xmlWriter.WriteStartElement("file");
-                    this.xmlWriter.WriteAttributeString("name", helper.GetFileName(info.Name));
+                    this.xmlWriter.WriteAttributeString("name", this.FileHelper.GetFileName(info.Name));
                     this.xmlWriter.WriteAttributeString(
-                        "size"
-                        , string.Format(
-                            "{0:F3} kb"
-                            , this.helper.ConvertFileLength(info.Length, FileLength.Kbyte)));
+                        "size",
+                        $"{this.FileHelper.ConvertFileLength(info.Length, FileLength.Kbyte):F3} kb");
                     this.xmlWriter.WriteEndElement();
                 }
 

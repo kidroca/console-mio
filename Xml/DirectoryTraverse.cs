@@ -9,35 +9,60 @@
     /// </summary>
     public abstract class DirectoryTraverse
     {
-        protected StreamHomeworkHelper helper = new StreamHomeworkHelper();
-        
+        /// <summary>
+        /// Creates an instance with the default implementation
+        /// </summary>
+        protected DirectoryTraverse()
+            : this(new StreamHomeworkHelper())
+        {
+        }
+
+        /// <summary>
+        /// Creates an instance with the given fileHelper
+        /// </summary>
+        /// <param name="fileHelper">A streams helper for operations with files and directories</param>
+        protected DirectoryTraverse(StreamHomeworkHelper fileHelper)
+        {
+            if (fileHelper == null)
+            {
+                throw new ArgumentNullException(nameof(fileHelper));
+            }
+
+            this.FileHelper = fileHelper;
+        }
+
+        /// <summary>
+        /// Readonly reference to the file helper
+        /// </summary>
+        protected StreamHomeworkHelper FileHelper { get; }
+
         public void TraverseFolder(DirectoryInfo dirInfo)
         {
             string directoryName = dirInfo.Name,
                 directoryPath = dirInfo.FullName;
 
-            Dictionary<string, List<FileInfo>> directoryFiles = helper.GetDirectoryFiles(dirInfo);
+            Dictionary<string, List<FileInfo>> directoryFiles = this.FileHelper.GetDirectoryFiles(dirInfo);
 
-            WriteDirectoryToDocument(directoryName, directoryPath);
-            WriteFileInformation(directoryFiles);
-                       
+            this.WriteDirectoryToDocument(directoryName, directoryPath);
+            this.WriteFileInformation(directoryFiles);
+
             foreach (var dir in dirInfo.GetDirectories())
             {
                 try
                 {
-                    TraverseFolder(dir);
+                    this.TraverseFolder(dir);
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    LogUnauthorizedAccess(dir.FullName, ex);
+                    this.LogUnauthorizedAccess(dir.FullName, ex);
                 }
                 catch (PathTooLongException ex)
                 {
-                    LogPathToLoog(dir.FullName, ex);
+                    this.LogPathToLoog(dir.FullName, ex);
                 }
             }
 
-            CloseCurrentDirectory(directoryName);
+            this.CloseCurrentDirectory(directoryName);
         }
 
         protected abstract void WriteDirectoryToDocument(string directoryName, string directoryPath);

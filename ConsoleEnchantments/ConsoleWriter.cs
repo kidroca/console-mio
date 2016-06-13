@@ -32,7 +32,6 @@ namespace HomeworkHelpers.ConsoleEnchantments
             return this;
         }
 
-
         /// <inheritdoc />
         public IConsoleWriter WriteLine(string text, ConsoleColor color)
         {
