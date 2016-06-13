@@ -3,7 +3,7 @@ namespace ConsoleMio.ConsoleEnhancements.Contracts
     using System;
 
     /// <summary>
-    /// A helper that wrties colored text over the console
+    /// A helper that writes colored text over the console
     /// </summary>
     public interface IConsoleWriter
     {
