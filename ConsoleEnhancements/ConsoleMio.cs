@@ -28,7 +28,7 @@
         }
 
         /// <summary>
-        /// Creates a new ConsoleMio helper using the provided wirter and reader
+        /// Creates a new ConsoleMio helper using the provided writer and reader
         /// and invokes the <see cref="Setup"/> method
         /// </summary>
         /// <param name="writer">An <see cref="IConsoleWriter"/> implementation</param>
@@ -100,6 +100,18 @@
         }
 
         /// <inheritdoc />
+        public IConsoleWriter Write(object item, ConsoleColor color)
+        {
+            return this.writer.Write(item, color);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter Write(object item, ConsoleColor color, ConsoleColor background)
+        {
+            return this.writer.Write(item, color, background);
+        }
+
+        /// <inheritdoc />
         public IConsoleWriter WriteLine(string text, ConsoleColor color)
         {
             return this.writer.WriteLine(text, color);
@@ -109,6 +121,24 @@
         public IConsoleWriter WriteLine(string text, ConsoleColor color, ConsoleColor background)
         {
             return this.writer.WriteLine(text, color, background);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine(object item, ConsoleColor color)
+        {
+            return this.writer.WriteLine(item, color);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine(object item, ConsoleColor color, ConsoleColor background)
+        {
+            return this.writer.WriteLine(item, color, background);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine()
+        {
+            return this.writer.WriteLine();
         }
 
         /// <inheritdoc />

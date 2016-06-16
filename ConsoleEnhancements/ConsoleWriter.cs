@@ -33,6 +33,18 @@ namespace ConsoleMio.ConsoleEnhancements
         }
 
         /// <inheritdoc />
+        public IConsoleWriter Write(object item, ConsoleColor color)
+        {
+            return this.Write(item.ToString(), color);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter Write(object item, ConsoleColor color, ConsoleColor background)
+        {
+            return this.Write(item.ToString(), color, background);
+        }
+
+        /// <inheritdoc />
         public IConsoleWriter WriteLine(string text, ConsoleColor color)
         {
             this.Write(text, color);
@@ -47,6 +59,25 @@ namespace ConsoleMio.ConsoleEnhancements
             this.Write(text, color, background);
             Console.WriteLine();
 
+            return this;
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine(object item, ConsoleColor color)
+        {
+            return this.WriteLine(item.ToString(), color);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine(object item, ConsoleColor color, ConsoleColor background)
+        {
+            return this.WriteLine(item.ToString(), color, background);
+        }
+
+        /// <inheritdoc />
+        public IConsoleWriter WriteLine()
+        {
+            Console.WriteLine();
             return this;
         }
 
