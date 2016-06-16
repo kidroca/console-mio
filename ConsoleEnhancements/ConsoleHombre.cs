@@ -21,20 +21,34 @@ namespace ConsoleMio.ConsoleEnhancements
         /// <inheritdoc />
         public void PrintHeading(string text, ConsoleColor color = ConsoleColor.White)
         {
-            int totalWidth = Console.WindowWidth;
-            string format = string.Format(" {0} ", text);
-            char paddingChar = ' ';
-            var paddingColor = ConsoleColor.White;
-            var backgorundColor = ConsoleColor.DarkGray;
-            int freeWidth = totalWidth - format.Length;
+            const char paddingChar = ' ';
+            string heading = $" {text} ";
 
-            this.writer.Write(new string(paddingChar, totalWidth), paddingColor, backgorundColor);
-            this.writer.Write(new string(paddingChar, freeWidth / 2), paddingColor, backgorundColor);
-            this.writer.Write(format, color, backgorundColor);
-            this.writer.Write(new string(paddingChar, freeWidth / 2), paddingColor, backgorundColor);
-            this.writer.Write(new string(paddingChar, totalWidth), paddingColor, backgorundColor);
-            Console.WriteLine();
-            Console.WriteLine();
+            int totalWidth = Console.WindowWidth;
+            int freeWidth = totalWidth - heading.Length;
+            if (freeWidth < 0) freeWidth = 0;
+
+            string emptyLine = new string(paddingChar, totalWidth);
+            string sideSpace = new string(paddingChar, freeWidth / 2);
+
+            var paddingColor = ConsoleColor.White;
+            var backgroundColor = ConsoleColor.DarkGray;
+
+            bool isEvenLine = heading.Length % 2 == 0;
+
+            this.writer
+                .Write(emptyLine, paddingColor, backgroundColor)
+                .Write(sideSpace, paddingColor, backgroundColor)
+                .Write(heading, color, backgroundColor)
+                .Write(
+                    isEvenLine
+                        ? sideSpace
+                        : sideSpace + paddingChar,
+                    paddingColor,
+                    backgroundColor)
+                .Write(emptyLine, paddingColor, backgroundColor)
+                .WriteLine()
+                .WriteLine();
         }
 
         /// <inheritdoc />
