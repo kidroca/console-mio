@@ -62,5 +62,14 @@ namespace ConsoleMio.ConsoleEnhancements
         {
             return new ConsoleMenu<T>(this.writer, items, prefix);
         }
+
+        /// <inheritdoc />
+        public void PromptToContinue(ConsoleColor color)
+        {
+            this.writer
+                .WriteLine("Press a key to proceed", color)
+                .WriteLine();
+            Console.ReadKey(true);
+        }
     }
 }

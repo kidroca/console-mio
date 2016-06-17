@@ -182,5 +182,11 @@
         {
             return this.hombre.CreateMenu<T>(items, prefix);
         }
+
+        /// <inheritdoc />
+        public void PromptToContinue(ConsoleColor color)
+        {
+            this.hombre.PromptToContinue(color);
+        }
     }
 }

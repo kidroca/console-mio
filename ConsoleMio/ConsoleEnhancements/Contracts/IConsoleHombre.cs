@@ -34,5 +34,11 @@ namespace ConsoleMio.ConsoleEnhancements.Contracts
         /// <param name="prefix">A template prefix that will be printed before each item</param>
         /// <returns>Returns a menu that can be displayed</returns>
         ConsoleMenu<T> CreateMenu<T>(IList<T> items, string prefix);
+
+        /// <summary>
+        /// Prompts the user for interaction in order to continue the program execution
+        /// </summary>
+        /// <param name="color">The color of the text that may appear</param>
+        void PromptToContinue(ConsoleColor color);
     }
 }

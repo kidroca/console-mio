@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\console-mio\ConsoleMio.csproj">
+    <ProjectReference Include="..\ConsoleMio\ConsoleMio.csproj">
       <Project>{95a6dbbc-47d3-4856-acef-bef247db8893}</Project>
       <Name>ConsoleMio</Name>
     </ProjectReference>
