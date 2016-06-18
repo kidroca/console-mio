@@ -1,7 +1,6 @@
 ﻿namespace ConsoleMio.ConsoleEnhancements
 {
     using System;
-    using System.Collections.Generic;
     using Contracts;
 
     /// <summary>
@@ -172,15 +171,15 @@
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(IList<T> items)
+        public ConsoleMenu<T> CreateMenu<T>(params T[] items)
         {
             return this.hombre.CreateMenu<T>(items);
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(IList<T> items, string prefix)
+        public ConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items)
         {
-            return this.hombre.CreateMenu<T>(items, prefix);
+            return this.hombre.CreateMenu<T>(prefix, items);
         }
 
         /// <inheritdoc />
