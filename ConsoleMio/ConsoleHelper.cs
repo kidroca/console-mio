@@ -11,14 +11,20 @@
         private ConsoleMio console;
 
         /// <summary>
-        /// Holds the ConsoleMio single instance
+        /// Gets the ConsoleMio single instance
         /// </summary>
+        /// <value>
+        /// Holds the ConsoleMio single instance
+        /// </value>
         public ConsoleMio ConsoleMio => this.console ?? (this.console = new ConsoleMio());
 
         /// <summary>
         /// Restarts the given method, usually for Main.
         /// </summary>
-        /// <param name="restartCallback"></param>
+        /// <param name="restartCallback">
+        /// An <see cref="Action"/> that will be called to restart the program
+        /// after the user is alerted that a restart is taking place
+        /// </param>
         public void Restart(Action restartCallback)
         {
             Console.WriteLine();

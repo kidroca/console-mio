@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// Creates a menu from a list of options displaying the options with the 
+        /// Creates a menu from a list of options displaying the options with the
         /// specified <paramref name="prefix"/>
         /// </summary>
         /// <param name="writer"></param>

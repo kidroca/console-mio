@@ -176,7 +176,7 @@
 
         private void PromptDialog(FileDialog dialog)
         {
-            // Directory.GetParent("../../").FullName; 
+            // Directory.GetParent("../../").FullName;
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             while (dialog.ShowDialog() != DialogResult.OK)

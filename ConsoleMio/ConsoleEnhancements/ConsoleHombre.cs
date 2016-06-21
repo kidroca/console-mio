@@ -1,4 +1,4 @@
-namespace ConsoleMio.ConsoleEnhancements
+﻿namespace ConsoleMio.ConsoleEnhancements
 {
     using System;
     using Contracts;
@@ -9,6 +9,7 @@ namespace ConsoleMio.ConsoleEnhancements
         private readonly IConsoleWriter writer;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleHombre"/> class.
         /// Creates a new instance using the provided writer
         /// </summary>
         /// <param name="writer">A console writer used internally</param>

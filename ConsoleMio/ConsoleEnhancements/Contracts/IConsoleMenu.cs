@@ -23,7 +23,7 @@ namespace ConsoleMio.ConsoleEnhancements.Contracts
         ConsoleMenu<T> RemoveItem(T item);
 
         /// <summary>
-        /// Displays the menu, the menu stays on until an option is selected 
+        /// Displays the menu, the menu stays on until an option is selected
         /// with the 'Enter' key
         /// </summary>
         /// <returns>The coresponding selected item</returns>

@@ -5,7 +5,7 @@
 
     /// <summary>
     /// Console helper library for printig colored messages
-    /// </summary> 
+    /// </summary>
     public class ConsoleMio : IConsoleWriter, IConsoleReader, IConsoleHombre
     {
         private readonly IConsoleWriter writer;
@@ -13,7 +13,8 @@
         private readonly IConsoleHombre hombre;
 
         /// <summary>
-        /// Creates a new ConsoleMio helper with the default implementations of 
+        /// Initializes a new instance of the <see cref="ConsoleMio"/> class.
+        /// Creates a new ConsoleMio helper with the default implementations of
         /// the <see cref="IConsoleWriter"/>, <see cref="IConsoleReader"/> and
         /// <see cref="IConsoleHombre"/> and invokes the <see cref="Setup"/> method
         /// </summary>
@@ -27,6 +28,7 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleMio"/> class.
         /// Creates a new ConsoleMio helper using the provided writer and reader
         /// and invokes the <see cref="Setup"/> method
         /// </summary>

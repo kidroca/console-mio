@@ -16,11 +16,11 @@
         /// </summary>
         /// <typeparam name="T">Works with all convertible types</typeparam>
         /// <param name="template">
-        /// A template parameter whose value is irrelevant, 
+        /// A template parameter whose value is irrelevant,
         /// it only feed in the tpye of the output collection
         /// </param>
         /// <param name="splitChars">
-        /// The desired split characters - set to null to use the default 
+        /// The desired split characters - set to null to use the default
         /// single space separato
         /// r</param>
         /// <returns></returns>
@@ -84,14 +84,14 @@
         }
 
         /// <summary>
-        /// A more convenient but slightly more restrictive (Doesn't generate strings) 
+        /// A more convenient but slightly more restrictive (Doesn't generate strings)
         /// collection generator
         /// </summary>
         /// <typeparam name="T">
         /// Should work for all numeric types
         /// </typeparam>
         /// <param name="template">
-        /// A template parameter whose value is irrelevant, 
+        /// A template parameter whose value is irrelevant,
         /// it only feed in the tpye of the output collection
         /// </param>
         /// <param name="size"></param>
