@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\ConsoleMio.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>CustomRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -48,10 +49,10 @@
     <Compile Include="ConsoleEnhancements\ConsoleMenu.cs" />
     <Compile Include="ConsoleEnhancements\ConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\ConsoleWriter.cs" />
-    <Compile Include="ConsoleEnhancements\Contracts\IConsoleWriter.cs" />
-    <Compile Include="ConsoleEnhancements\Contracts\IConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\Contracts\IConsoleHombre.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\Contracts\IConsoleMenu.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleWriter.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enumerations\EnumFileLengths.cs" />
     <Compile Include="HomeworkHelper.cs" />
@@ -61,7 +62,15 @@
     <Compile Include="Xml\TraverseUsingXmlWriter.cs" />
     <Compile Include="Xml\DirectoryTraverse.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="CustomRules.ruleset" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
