@@ -61,6 +61,7 @@
         /// <param name="transform">
         /// A transform function that will be used to convert each entry in to the specific type
         /// </param>
+        /// <param name="parametersCount">Exact number of parameters that must be read</param>
         /// <param name="messageColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
         /// <param name="inputColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
         /// <param name="errorColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
@@ -69,6 +70,7 @@
             string message,
             string[] splitPoints,
             Func<string, T> transform,
+            int parametersCount,
             ConsoleColor messageColor,
             ConsoleColor inputColor,
             ConsoleColor errorColor);

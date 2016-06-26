@@ -90,6 +90,7 @@
             string message,
             string[] splitPoints,
             Func<string, T> transform,
+            int parametersCount,
             ConsoleColor messageColor,
             ConsoleColor inputColor,
             ConsoleColor errorColor)
@@ -109,6 +110,18 @@
                         .Split(splitPoints, StringSplitOptions.RemoveEmptyEntries)
                         .Select(transform)
                         .ToArray();
+
+                    if (args.Length != parametersCount)
+                    {
+                        this.writer.FormatLine(
+                            "Expecting {0} parameters but received {1}",
+                            errorColor,
+                            parametersCount,
+                            args.Length);
+
+                        args = null;
+                        this.PromptToContinue(errorColor);
+                    }
                 }
                 catch (Exception e)
                 {

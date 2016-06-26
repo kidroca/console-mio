@@ -49,6 +49,7 @@
                 "Reading test input:",
                 new[] { " " },
                 double.Parse,
+                2,
                 Red,
                 Blue,
                 DarkCyan);

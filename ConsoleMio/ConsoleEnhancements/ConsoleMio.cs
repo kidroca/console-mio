@@ -196,17 +196,16 @@
             this.hombre.PromptToContinue(color);
         }
 
-        /// <inheritdoc />
         public T[] ReadInput<T>(
             string message,
             string[] splitPoints,
             Func<string, T> transform,
+            int parametersCount,
             ConsoleColor messageColor,
             ConsoleColor inputColor,
             ConsoleColor errorColor)
         {
-            return this.hombre.ReadInput(
-                message, splitPoints, transform, messageColor, inputColor, errorColor);
+            return this.hombre.ReadInput(message, splitPoints, transform, parametersCount, messageColor, inputColor, errorColor);
         }
 
         /// <inheritdoc />
