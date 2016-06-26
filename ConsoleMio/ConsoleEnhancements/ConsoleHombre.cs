@@ -80,5 +80,18 @@
                 .WriteLine();
             Console.ReadKey(true);
         }
+
+        /// <inheritdoc />
+        public void ClearRows(int top, int count)
+        {
+            Console.SetCursorPosition(0, top);
+
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write(new string(' ', Console.WindowWidth));
+            }
+
+            Console.SetCursorPosition(0, top);
+        }
     }
 }

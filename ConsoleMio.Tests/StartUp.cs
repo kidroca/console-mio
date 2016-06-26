@@ -13,6 +13,7 @@
         {
             TestHeading();
             TestPromptMenu();
+            TestClearRows();
         }
 
         private static void TestHeading()
@@ -34,6 +35,12 @@
             Console.WriteLine("Some text before menu");
             menu.Show(Red, Blue);
             Console.WriteLine("Some text after");
+        }
+
+        private static void TestClearRows()
+        {
+            Hombre.ClearRows(0, 3);
+            Console.WriteLine("clear test");
         }
     }
 }

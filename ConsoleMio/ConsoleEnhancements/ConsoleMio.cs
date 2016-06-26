@@ -195,5 +195,11 @@
         {
             this.hombre.PromptToContinue(color);
         }
+
+        /// <inheritdoc />
+        public void ClearRows(int top, int count)
+        {
+            this.hombre.ClearRows(top, count);
+        }
     }
 }

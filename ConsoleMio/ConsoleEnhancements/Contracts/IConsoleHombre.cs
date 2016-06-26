@@ -48,5 +48,13 @@
         /// </summary>
         /// <param name="color">The color of the text that may appear</param>
         void PromptToContinue(ConsoleColor color);
+
+        /// <summary>
+        /// Clears the rows from the console starting from the <paramref name="top"/> position
+        /// Then returns to the start of the <paramref name="top"/> row
+        /// </summary>
+        /// <param name="top">The row from which to start from</param>
+        /// <param name="count">How many rows to clear</param>
+        void ClearRows(int top, int count);
     }
 }
