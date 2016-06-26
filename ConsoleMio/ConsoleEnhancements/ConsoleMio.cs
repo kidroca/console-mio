@@ -187,7 +187,7 @@
         /// <inheritdoc />
         public IConsoleMenu<T> CreatePromptMenu<T>(string prompt, params T[] items)
         {
-            return this.hombre.CreateMenu(prompt, items);
+            return this.hombre.CreatePromptMenu(prompt, items);
         }
 
         /// <inheritdoc />
