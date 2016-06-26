@@ -22,7 +22,7 @@
         /// <typeparam name="T">The type of the objects in the menu</typeparam>
         /// <param name="items">A list of object that will be selectable from the menu</param>
         /// <returns>Returns a menu that can be displayed</returns>
-        ConsoleMenu<T> CreateMenu<T>(params T[] items);
+        IConsoleMenu<T> CreateMenu<T>(params T[] items);
 
         /// <summary>
         /// Creates a <see cref="ConsoleMenu{T}"/> from a list of items
@@ -32,7 +32,16 @@
         /// <param name="prefix">A template prefix that will be printed before each item</param>
         /// <param name="items">A list of object that will be selectable from the menu</param>
         /// <returns>Returns a menu that can be displayed</returns>
-        ConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items);
+        IConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items);
+
+        /// <summary>
+        /// Creates a <see cref="PromptMenu{T}"/> from a list of items
+        /// </summary>
+        /// <typeparam name="T">The type of the objects in the menu</typeparam>
+        /// <param name="prompt">A text to be displayed above the menu</param>
+        /// <param name="items">A list of object that will be selectable from the menu</param>
+        /// <returns>Returns a menu prompt that can be displayed</returns>
+        IConsoleMenu<T> CreatePromptMenu<T>(string prompt, params T[] items);
 
         /// <summary>
         /// Prompts the user for interaction in order to continue the program execution

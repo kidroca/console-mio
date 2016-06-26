@@ -4,7 +4,7 @@
     using Contracts;
 
     /// <summary>
-    /// Console helper library for printig colored messages
+    /// Console helper library for printing colored messages
     /// </summary>
     public class ConsoleMio : IConsoleWriter, IConsoleReader, IConsoleHombre
     {
@@ -61,7 +61,7 @@
         }
 
         /// <summary>
-        /// Sets up overall console apperanace, ecnoding to unicode and console window width
+        /// Sets up overall console appearance, ecnoding to unicode and console window width
         /// </summary>
         /// <param name="color">The default text color</param>
         /// <param name="background">The default background color</param>
@@ -173,15 +173,21 @@
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(params T[] items)
+        public IConsoleMenu<T> CreateMenu<T>(params T[] items)
         {
             return this.hombre.CreateMenu<T>(items);
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items)
+        public IConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items)
         {
             return this.hombre.CreateMenu<T>(prefix, items);
+        }
+
+        /// <inheritdoc />
+        public IConsoleMenu<T> CreatePromptMenu<T>(string prompt, params T[] items)
+        {
+            return this.hombre.CreateMenu(prompt, items);
         }
 
         /// <inheritdoc />

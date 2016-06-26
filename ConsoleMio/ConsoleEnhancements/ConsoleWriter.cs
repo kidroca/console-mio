@@ -1,4 +1,4 @@
-namespace ConsoleMio.ConsoleEnhancements
+﻿namespace ConsoleMio.ConsoleEnhancements
 {
     using System;
     using Contracts;

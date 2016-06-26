@@ -50,9 +50,10 @@
     <Compile Include="ConsoleEnhancements\ConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\ConsoleWriter.cs" />
     <Compile Include="ConsoleEnhancements\Contracts\IConsoleHombre.cs" />
-    <Compile Include="ConsoleEnhancements\Contracts\IConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\Contracts\IConsoleMenu.cs" />
+    <Compile Include="ConsoleEnhancements\Contracts\IConsoleReader.cs" />
     <Compile Include="ConsoleEnhancements\Contracts\IConsoleWriter.cs" />
+    <Compile Include="ConsoleEnhancements\PromptMenu.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enumerations\EnumFileLengths.cs" />
     <Compile Include="HomeworkHelper.cs" />

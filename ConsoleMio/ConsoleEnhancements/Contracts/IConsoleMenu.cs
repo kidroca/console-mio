@@ -1,4 +1,4 @@
-namespace ConsoleMio.ConsoleEnhancements.Contracts
+﻿namespace ConsoleMio.ConsoleEnhancements.Contracts
 {
     using System;
 
@@ -13,19 +13,21 @@ namespace ConsoleMio.ConsoleEnhancements.Contracts
         /// </summary>
         /// <param name="item">The item to be added</param>
         /// <returns>Returns self for chaining</returns>
-        ConsoleMenu<T> AddItem(T item);
+        IConsoleMenu<T> AddItem(T item);
 
         /// <summary>
         /// Removes an item from the menu
         /// </summary>
         /// <param name="item">The item that must be removed</param>
         /// <returns>Returns self for chaining</returns>
-        ConsoleMenu<T> RemoveItem(T item);
+        IConsoleMenu<T> RemoveItem(T item);
 
         /// <summary>
         /// Displays the menu, the menu stays on until an option is selected
         /// with the 'Enter' key
         /// </summary>
+        /// <param name="foreground">The menu foreground color</param>
+        /// <param name="background">The menu background color</param>
         /// <returns>The coresponding selected item</returns>
         T Show(ConsoleColor foreground, ConsoleColor background);
     }

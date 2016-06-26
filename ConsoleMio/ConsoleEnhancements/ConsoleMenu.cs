@@ -7,40 +7,47 @@
     /// <inheritdoc />
     public class ConsoleMenu<T> : IConsoleMenu<T>
     {
-        private readonly IConsoleWriter writer;
-
         private readonly IList<T> items;
 
         private readonly string prefix;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleMenu{T}"/> class.
         /// Creates an empty menu
         /// </summary>
-        /// <param name="writer">The writer used for rendering the menu</param>
+        /// <param name="writer">
+        /// An <see cref="IConsoleWriter"/> to be used for menu rendering
+        /// </param>
         public ConsoleMenu(IConsoleWriter writer)
         {
-            this.writer = writer;
+            this.Writer = writer;
             this.items = new List<T>();
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleMenu{T}"/> class.
         /// Creates a menu from a list of options
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="items"></param>
+        /// <param name="writer">
+        /// An <see cref="IConsoleWriter"/> to be used for menu rendering
+        /// </param>
+        /// <param name="items">Menu items to choose from</param>
         public ConsoleMenu(IConsoleWriter writer, IList<T> items)
         {
-            this.writer = writer;
+            this.Writer = writer;
             this.items = items;
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleMenu{T}"/> class.
         /// Creates a menu from a list of options displaying the options with the
         /// specified <paramref name="prefix"/>
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="items"></param>
-        /// <param name="prefix"></param>
+        /// <param name="writer">
+        /// An <see cref="IConsoleWriter"/> to be used for menu rendering
+        /// </param>
+        /// <param name="items">Menu items to choose from</param>
+        /// <param name="prefix">Adds a prefix to the displayed menu items</param>
         public ConsoleMenu(IConsoleWriter writer, IList<T> items, string prefix)
             : this(writer, items)
         {
@@ -50,13 +57,26 @@
         /// <summary>
         /// Gets the items of the menu
         /// </summary>
+        /// <value>
+        /// The items of the menu
+        /// </value>
         public IList<T> MenuItems => this.items;
+
+        /// <summary>
+        /// Gets the <see cref="IConsoleWriter"/>
+        /// </summary>
+        /// <value>
+        /// The <see cref="IConsoleWriter"/>
+        /// </value>
+        protected IConsoleWriter Writer { get; }
 
         /// <summary>
         /// O(1)
         /// <inheritdoc />
         /// </summary>
-        public ConsoleMenu<T> AddItem(T item)
+        /// <param name="item">An item of <typeparamref name="T"/></param>
+        /// <returns>Returns self for chaining</returns>
+        public IConsoleMenu<T> AddItem(T item)
         {
             this.items.Add(item);
             return this;
@@ -66,14 +86,16 @@
         /// O(n)
         /// <inheritdoc />
         /// </summary>
-        public ConsoleMenu<T> RemoveItem(T item)
+        /// <param name="item">An item of <typeparamref name="T"/></param>
+        /// <returns>Returns self for chaining</returns>
+        public IConsoleMenu<T> RemoveItem(T item)
         {
             this.items.Remove(item);
             return this;
         }
 
         /// <inheritdoc />
-        public T Show(ConsoleColor foreground, ConsoleColor background)
+        public virtual T Show(ConsoleColor foreground, ConsoleColor background)
         {
             Console.CursorVisible = false;
 
@@ -162,11 +184,11 @@
             Console.CursorTop = top;
             foreach (T item in this.items)
             {
-                this.writer.WriteLine(item.ToString(), foreground);
+                this.Writer.WriteLine(item.ToString(), foreground);
             }
 
             Console.CursorTop = highlighted;
-            this.writer.WriteLine(this.items[highlighted - top].ToString(), background, foreground);
+            this.Writer.WriteLine(this.items[highlighted - top].ToString(), background, foreground);
         }
 
         private void HighlightItemWithPrefix(
@@ -176,13 +198,13 @@
 
             for (int i = 0; i < this.items.Count; i++)
             {
-                this.writer.WriteLine(
+                this.Writer.WriteLine(
                     $"{this.prefix} {i + 1}: {this.items[i]}",
                     foreground);
             }
 
             Console.CursorTop = highlighted;
-            this.writer.WriteLine(
+            this.Writer.WriteLine(
                 $"{this.prefix} {highlighted - top + 1}: {this.items[highlighted - top]}",
                 background,
                 foreground);

@@ -26,7 +26,10 @@
 
             int totalWidth = Console.WindowWidth;
             int freeWidth = totalWidth - heading.Length;
-            if (freeWidth < 0) freeWidth = 0;
+            if (freeWidth < 0)
+            {
+                freeWidth = 0;
+            }
 
             string emptyLine = new string(paddingChar, totalWidth);
             string sideSpace = new string(paddingChar, freeWidth / 2);
@@ -52,15 +55,21 @@
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(params T[] items)
+        public IConsoleMenu<T> CreateMenu<T>(params T[] items)
         {
             return new ConsoleMenu<T>(this.writer, items);
         }
 
         /// <inheritdoc />
-        public ConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items)
+        public IConsoleMenu<T> CreateMenu<T>(string prefix, params T[] items)
         {
             return new ConsoleMenu<T>(this.writer, items, prefix);
+        }
+
+        /// <inheritdoc />
+        public IConsoleMenu<T> CreatePromptMenu<T>(string promp, params T[] items)
+        {
+            return new PromptMenu<T>(this.writer, promp, items);
         }
 
         /// <inheritdoc />

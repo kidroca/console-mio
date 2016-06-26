@@ -1,4 +1,4 @@
-namespace ConsoleMio.ConsoleEnhancements.Contracts
+﻿namespace ConsoleMio.ConsoleEnhancements.Contracts
 {
     using System;
 
