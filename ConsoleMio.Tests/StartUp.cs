@@ -2,27 +2,27 @@
 {
     using System;
     using ConsoleEnhancements;
-    using ConsoleEnhancements.Contracts;
     using static System.ConsoleColor;
 
     public class StartUp
     {
-        private static readonly IConsoleHombre Hombre = new ConsoleHombre(new ConsoleWriter());
+        private static readonly ConsoleMio ConsoleMio = new ConsoleMio();
 
         private static void Main()
         {
             TestHeading();
             TestPromptMenu();
+            TestReadInput();
             TestClearRows();
         }
 
         private static void TestHeading()
         {
-            Hombre.PrintHeading("Even heading");
+            ConsoleMio.PrintHeading("Even heading");
 
-            Hombre.PrintHeading("Odd heading");
+            ConsoleMio.PrintHeading("Odd heading");
 
-            Hombre.PrintHeading("Some really long heading text that will probably span multiple lines. Dobar si pesho. Some really long heading text that will probably span multiple lines.");
+            ConsoleMio.PrintHeading("Some really long heading text that will probably span multiple lines. Dobar si pesho. Some really long heading text that will probably span multiple lines.");
         }
 
         private static void TestPromptMenu()
@@ -30,7 +30,7 @@
             var prompt = "Select an item:";
             string[] items = { "Item 1", "Item 2", "Item 3" };
 
-            var menu = Hombre.CreatePromptMenu(prompt, items);
+            var menu = ConsoleMio.CreatePromptMenu(prompt, items);
 
             Console.WriteLine("Some text before menu");
             menu.Show(Red, Blue);
@@ -39,8 +39,24 @@
 
         private static void TestClearRows()
         {
-            Hombre.ClearRows(0, 3);
+            ConsoleMio.ClearRows(0, 3);
             Console.WriteLine("clear test");
+        }
+
+        private static void TestReadInput()
+        {
+            var input = ConsoleMio.ReadInput(
+                "Reading test input:",
+                new[] { " " },
+                double.Parse,
+                Red,
+                Blue,
+                DarkCyan);
+
+            foreach (var number in input)
+            {
+                ConsoleMio.WriteLine(number, Blue);
+            }
         }
     }
 }

@@ -50,6 +50,30 @@
         void PromptToContinue(ConsoleColor color);
 
         /// <summary>
+        /// Reads generic input from the console and transforms it to the given type using
+        /// the provided function
+        /// </summary>
+        /// <typeparam name="T">The type that console input should be converted to</typeparam>
+        /// <param name="message">Prompt message before reading the input</param>
+        /// <param name="splitPoints">
+        /// Strings (like " ", "," "-") on which to split input to separate parameters
+        /// </param>
+        /// <param name="transform">
+        /// A transform function that will be used to convert each entry in to the specific type
+        /// </param>
+        /// <param name="messageColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
+        /// <param name="inputColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
+        /// <param name="errorColor">Color from the <see cref="ConsoleColor"/> enumeration</param>
+        /// <returns>An array {T} values</returns>
+        T[] ReadInput<T>(
+            string message,
+            string[] splitPoints,
+            Func<string, T> transform,
+            ConsoleColor messageColor,
+            ConsoleColor inputColor,
+            ConsoleColor errorColor);
+
+        /// <summary>
         /// Clears the rows from the console starting from the <paramref name="top"/> position
         /// Then returns to the start of the <paramref name="top"/> row
         /// </summary>

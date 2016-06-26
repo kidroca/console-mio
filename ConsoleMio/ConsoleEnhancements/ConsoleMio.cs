@@ -22,7 +22,7 @@
         {
             this.writer = new ConsoleWriter();
             this.reader = new ConsoleReader();
-            this.hombre = new ConsoleHombre(this.writer);
+            this.hombre = new ConsoleHombre(this.writer, this.reader);
 
             this.Setup();
         }
@@ -194,6 +194,19 @@
         public void PromptToContinue(ConsoleColor color)
         {
             this.hombre.PromptToContinue(color);
+        }
+
+        /// <inheritdoc />
+        public T[] ReadInput<T>(
+            string message,
+            string[] splitPoints,
+            Func<string, T> transform,
+            ConsoleColor messageColor,
+            ConsoleColor inputColor,
+            ConsoleColor errorColor)
+        {
+            return this.hombre.ReadInput(
+                message, splitPoints, transform, messageColor, inputColor, errorColor);
         }
 
         /// <inheritdoc />
